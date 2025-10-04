@@ -1,31 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>{{title}} | Productos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <title>{{title}} | Ecommerce</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.png" type="image/png" />
+
   <style>
-    body { font-family: system-ui, Arial, sans-serif; margin: 20px; }
-    header, nav { margin-bottom: 16px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-    .card { border: 1px solid #ddd; border-radius: 10px; padding: 12px; }
-    form { display: grid; gap: 8px; margin: 16px 0; }
-    input, select, button { padding: 8px; }
-    .row { display: flex; gap: 8px; flex-wrap: wrap; }
-    .muted { color: #666; font-size: 0.9rem; }
-    .danger { color: #b00020; }
+    body { font-family: system-ui, Segoe UI, Arial, sans-serif; margin: 24px; }
+    nav a { margin-right: 8px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+    .card { border:1px solid #ddd; border-radius:10px; padding:12px; }
+    .row { display:flex; gap:8px; flex-wrap:wrap; }
+    .muted { color:#666; font-size:.9rem; }
+    .danger { color:#b00020; }
   </style>
+
+  {{!-- Cargar primero el helper del carrito --}}
+  <script src="/js/cart-common.js" defer></script>
 </head>
 <body>
-  <header>
-    <h1>{{title}}</h1>
-  </header>
-
   <nav>
-    <a href="/">Home</a> |
+    <a href="/products">Productos</a>
     <a href="/realtimeproducts">Real-Time Products</a>
+    <a href="/products/new">Nuevo producto</a>
+    {{!-- Enlace al carrito del usuario (cid viene de res.locals) --}}
+    <a id="cartLink" href="#">Mi carrito</a>
   </nav>
 
   {{{body}}}
+
+  <script src="/js/cart-link.js"></script>
 </body>
 </html>

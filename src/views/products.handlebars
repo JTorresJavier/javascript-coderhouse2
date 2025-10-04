@@ -1,0 +1,24 @@
+<h1>Productos</h1>
+
+<ul>
+  {{#each products}}
+    <li>
+      <a href="/products/{{this._id}}"><strong>{{this.title}}</strong></a>
+      — ${{this.price}} — {{this.category}}
+
+      <button class="add-to-cart" data-pid="{{this._id}}">Agregar al carrito</button>
+    </li>
+  {{/each}}
+</ul>
+
+<div>
+  Página {{page}} de {{totalPages}}
+  {{#if hasPrevPage}}
+    <a href="/products?page={{prevPage}}&limit={{limit}}{{#if sort}}&sort={{sort}}{{/if}}{{#if query}}&query={{query}}{{/if}}">Anterior</a>
+  {{/if}}
+  {{#if hasNextPage}}
+    <a href="/products?page={{nextPage}}&limit={{limit}}{{#if sort}}&sort={{sort}}{{/if}}{{#if query}}&query={{query}}{{/if}}">Siguiente</a>
+  {{/if}}
+</div>
+
+<script src="/js/products-page.js"></script>

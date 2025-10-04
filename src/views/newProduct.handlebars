@@ -1,0 +1,21 @@
+<h1>Crear producto</h1>
+
+<form id="productForm" class="row" style="max-width:680px">
+  <input name="title" placeholder="Título" required />
+  <input name="description" placeholder="Descripción" required />
+  <input name="code" placeholder="Código único" required />
+  <input name="price" type="number" step="0.01" placeholder="Precio" required />
+  <input name="stock" type="number" placeholder="Stock" required />
+  <input name="category" placeholder="Categoría" required />
+  <select name="status">
+    <option value="true" selected>Activo</option>
+    <option value="false">Inactivo</option>
+  </select>
+  <input name="thumbnails" placeholder='Thumbnails (ej: /imgs/a.png,/imgs/b.png)' />
+  <button type="submit">Guardar</button>
+</form>
+
+<p class="muted" id="msg"></p>
+
+{{!-- cargar JS externo (permitido por CSP: script-src 'self') --}}
+<script src="/js/new-product.js"></script>

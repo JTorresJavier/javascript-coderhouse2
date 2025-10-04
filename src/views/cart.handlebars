@@ -1,0 +1,80 @@
+{{!-- src/views/cart.handlebars --}}
+<div id="cartRoot" data-cart-id="{{cart._id}}">
+  <h1>Carrito {{cart._id}}</h1>
+
+  {{#if cart.products.length}}
+    <ul id="cartList">
+      {{#each cart.products}}
+        <li
+          data-pid="{{this.product._id}}"
+          data-price="{{this.product.price}}"
+        >
+          <strong>{{this.product.title}}</strong>
+          — ${{this.product.price}}
+          — Cantidad:
+          <input class="qty" type="number" min="0" value="{{this.quantity}}" style="width:64px" />
+          <button class="update-qty">Actualizar</button>
+          <button class="remove-item">Eliminar</button>
+        </li>
+      {{/each}}
+    </ul>
+
+    <hr />
+
+    <section id="totals" class="card" style="max-width:520px;padding:12px;border:1px solid #ddd;border-radius:10px">
+      <h2>Resumen</h2>
+      <div class="row" style="display:flex;justify-content:space-between">
+        <span>Subtotal (sin IVA)</span>
+        <strong id="subtotal">$0</strong>
+      </div>
+      <div class="row" style="display:flex;justify-content:space-between">
+        <span>Descuento (30% > $300.000)</span>
+        <strong id="discount">-$0</strong>
+      </div>
+      <div class="row" style="display:flex;justify-content:space-between">
+        <span>IVA (21%)</span>
+        <strong id="iva">$0</strong>
+      </div>
+      <div class="row" style="display:flex;justify-content:space-between">
+        <span>Total con IVA</span>
+        <strong id="total">$0</strong>
+      </div>
+    </section>
+
+    <section id="installments" class="card" style="max-width:520px;margin-top:12px;padding:12px;border:1px solid #ddd;border-radius:10px">
+      <h2>Calculadora de cuotas</h2>
+      <p class="muted">Seleccioná un plan. Se aplica recargo sobre el total con IVA.</p>
+      <div class="row" style="display:flex;gap:8px;align-items:center">
+        <label for="plan">Plan:</label>
+        <select id="plan">
+          <option value="1">1 cuota (sin recargo)</option>
+          <option value="3">3 cuotas</option>
+          <option value="6">6 cuotas</option>
+          <option value="12">12 cuotas</option>
+        </select>
+        <span class="muted" id="planRateInfo"></span>
+      </div>
+
+      <div style="margin-top:8px;display:grid;gap:4px">
+        <div style="display:flex;justify-content:space-between">
+          <span>Total financiado</span>
+          <strong id="financedTotal">$0</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between">
+          <span>Valor de cada cuota</span>
+          <strong id="installmentValue">$0</strong>
+        </div>
+      </div>
+    </section>
+
+    <p style="margin-top:12px">
+      <button id="clearCart" class="danger">Vaciar carrito</button>
+    </p>
+  {{else}}
+    <p>Carrito vacío.</p>
+  {{/if}}
+
+  <p><a href="/products">Seguir comprando</a></p>
+</div>
+
+<script src="/js/cart-page.js" defer></script>
